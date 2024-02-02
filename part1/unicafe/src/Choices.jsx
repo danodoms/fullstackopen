@@ -1,7 +1,7 @@
-const Choices = () => {
+const Choices = (props) => {
   return (
     <div>
-      <button>good</button>
+      <button onClick={() => props.setGood(good)}>good</button>
       <button>neutral</button>
       <button>bad</button>
     </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Choices from "./Choices";
+import Choice from "./Choice";
 
 const App = () => {
   // save clicks of each button to its own state
@@ -9,8 +10,22 @@ const App = () => {
 
   return (
     <div>
-      <h1>give feedback</h1>
-      <Choices />
+      <div className="div">
+        <h1>give feedback</h1>
+      </div>
+
+      <div className="div">
+        <Choice name={"good"} onClick={() => setGood(good + 1)} />
+        <Choice name={"neutral"} onClick={() => setNeutral(neutral + 1)} />
+        <Choice name={"bad"} onClick={() => setBad(bad + 1)} />
+      </div>
+
+      <div className="div">
+        <h1>statistics</h1>
+        <p>good {good}</p>
+        <p>neutral {neutral}</p>
+        <p>bad {bad}</p>
+      </div>
     </div>
   );
 };

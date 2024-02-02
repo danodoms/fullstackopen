@@ -10,9 +10,9 @@ function generateContent(exercises) {
 
   exercises.forEach((exercise) => {
     console.log(exercise.name);
-    console.log(exercise.count);
+    console.log(exercise.exercises);
 
-    content += `<p>${exercise.name} ${exercise.count}</p>`;
+    content += `<p>${exercise.name} ${exercise.exercises}</p>`;
     console.log("content: ", content);
   });
 

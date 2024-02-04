@@ -1,11 +1,14 @@
-function Total(props) {
+function Total({ parts }) {
+  const totalExercises = parts.reduce((total, part) => {
+    console.log("total ", total);
+    console.log("part.exercises ", part.exercises);
+    return total + part.exercises;
+  }, 0);
+
   return (
-    <p>
-      Number of exercises{" "}
-      {props.exercises[0].exercises +
-        props.exercises[1].exercises +
-        props.exercises[2].exercises}
-    </p>
+    <strong>
+      <p>total of {totalExercises} exercises</p>
+    </strong>
   );
 }
 

@@ -2,11 +2,18 @@ import { useState, useEffect } from "react";
 import Display from "./Display";
 import Form from "./Form";
 import Search from "./Search";
+import axios from "axios";
 
 const App = () => {
   const [persons, setPersons] = useState([
     { name: "Arto Hellas", number: "098765" },
   ]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/persons").then((response) => {
+      setPersons(response.data);
+    });
+  }, []);
 
   const [personsToShow, setPersonsToShow] = useState(persons);
   const [newName, setNewName] = useState("");

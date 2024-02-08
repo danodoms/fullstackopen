@@ -1,3 +1,5 @@
+import Persons from "./Persons";
+
 const Form = ({
   persons,
   setPersons,
@@ -23,11 +25,18 @@ const Form = ({
     }
 
     console.log(newName);
+    const personObject = {
+      name: newName,
+      number: newNumber,
+    };
+    Persons.create(personObject)
+      .then((response) => console.log(response))
+      .catch((error) => {
+        console.log("fail ", error);
+      });
 
-    setPersons(persons.concat({ name: newName, number: newNumber }));
-    console.log(persons);
-
-    // filterPersons();
+    // setPersons(persons.concat({ name: newName, number: newNumber }));
+    // console.log(persons);
   };
 
   return (

@@ -3,6 +3,7 @@ import Display from "./Display";
 import Form from "./Form";
 import Search from "./Search";
 import axios from "axios";
+import Persons from "./Persons";
 
 const App = () => {
   const [persons, setPersons] = useState([

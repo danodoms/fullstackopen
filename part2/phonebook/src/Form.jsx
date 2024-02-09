@@ -20,23 +20,43 @@ const Form = ({
   const addPerson = (event) => {
     event.preventDefault();
 
-    if (persons.find((person) => person.name === newName)) {
-      return alert(`${newName} is already aded to phonebook`);
-    }
-
-    console.log(newName);
     const personObject = {
       name: newName,
       number: newNumber,
     };
+
+    const duplicatePerson = persons.find((person) => person.name === newName);
+    console.log("duplicatePerson: ", duplicatePerson);
+
+    if (duplicatePerson) {
+      const actionConfirmed = window.confirm(
+        `${duplicatePerson.name} is already added to phonebook, replace the old number with a new one?`
+      );
+
+      if (actionConfirmed) {
+        Persons.update(duplicatePerson.id, {
+          ...personObject,
+          id: duplicatePerson.id,
+        })
+          .then((response) => console.log(response))
+          .catch((error) => console.log(error));
+      }
+
+      return;
+    }
+
+    console.log(newName);
+
     Persons.create(personObject)
-      .then((response) => console.log(response))
+      .then(() => {
+        (response) => console.log(response);
+        setPersons(persons.concat(personObject));
+      })
       .catch((error) => {
         console.log("fail ", error);
       });
 
-    // setPersons(persons.concat({ name: newName, number: newNumber }));
-    // console.log(persons);
+    // ;
   };
 
   return (

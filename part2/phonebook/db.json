@@ -1,48 +1,24 @@
 {
   "persons": [
     {
-      "name": "Arto Hellas",
-      "number": "040-123456",
-      "id": "1"
+      "id": "c2c3",
+      "name": "djsahdo",
+      "number": "3102"
     },
     {
-      "name": "Ada Lovelace",
-      "number": "39-44-5323523",
-      "id": "2"
+      "id": "022d",
+      "name": "DOiu",
+      "number": "3102"
     },
     {
-      "name": "Dan Abramov",
-      "number": "12-43-234345",
-      "id": "3"
+      "name": "dom",
+      "number": "139",
+      "id": "7908"
     },
     {
-      "name": "Mary Poppendieck",
-      "number": "39-23-6423122",
-      "id": "4"
-    },
-    {
-      "id": "6472",
-      "name": {
-        "newName": "Dano"
-      },
-      "number": {
-        "newNumber": "091318371"
-      }
-    },
-    {
-      "id": "04b5",
-      "name": "Dano",
-      "number": "091318371"
-    },
-    {
-      "id": "441d",
-      "name": "Dano",
-      "number": "091318371"
-    },
-    {
-      "id": "c670",
-      "name": "Dano",
-      "number": "091318371"
+      "name": "hy",
+      "number": "339",
+      "id": "1ce0"
     }
   ]
 }

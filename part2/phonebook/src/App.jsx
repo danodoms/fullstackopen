@@ -6,9 +6,7 @@ import axios from "axios";
 import Persons from "./Persons";
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: "Arto Hellas", number: "098765" },
-  ]);
+  const [persons, setPersons] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:3001/persons").then((response) => {
@@ -41,7 +39,7 @@ const App = () => {
         setNewNumber={setNewNumber}
       />
 
-      <Display people={personsToShow} />
+      <Display people={personsToShow} setPersons={setPersons} />
     </div>
   );
 };

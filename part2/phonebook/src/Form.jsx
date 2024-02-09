@@ -34,29 +34,32 @@ const Form = ({
       );
 
       if (actionConfirmed) {
-        Persons.update(duplicatePerson.id, {
-          ...personObject,
-          id: duplicatePerson.id,
-        })
-          .then((response) => console.log(response))
+        Persons.update(duplicatePerson.id, personObject)
+          .then((response) => {
+            console.log(response);
+            setPersons(
+              persons.map((person) =>
+                person.id === duplicatePerson.id
+                  ? { ...person, number: newNumber }
+                  : person
+              )
+            );
+          })
           .catch((error) => console.log(error));
       }
-
       return;
     }
 
     console.log(newName);
 
     Persons.create(personObject)
-      .then(() => {
-        (response) => console.log(response);
-        setPersons(persons.concat(personObject));
+      .then((response) => {
+        console.log(response);
+        setPersons(persons.concat(response));
       })
       .catch((error) => {
         console.log("fail ", error);
       });
-
-    // ;
   };
 
   return (

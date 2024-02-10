@@ -1,6 +1,6 @@
 import Persons from "./Persons";
 
-const Display = ({ people, setPersons }) => {
+const Display = ({ people, setPersons, setNotification }) => {
   const handleDelete = (id) => {
     const actionConfirmed = window.confirm(
       "Are you sure you want to delete this person?"
@@ -8,11 +8,24 @@ const Display = ({ people, setPersons }) => {
 
     if (actionConfirmed) {
       Persons.remove(id)
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error));
-    }
+        .then((response) => {
+          console.log(response);
+          console.log("status: ", response.status);
 
-    setPersons(people.filter((person) => person.id != id));
+          setNotification({ text: "Deleted", type: "error" });
+          setPersons(people.filter((person) => person.id != id));
+        })
+        .catch((error) => {
+          (error) => console.log(error);
+
+          setNotification({
+            text: "Already removed from server",
+            type: "error",
+          });
+
+          setPersons(people.filter((person) => person.id != id));
+        });
+    }
   };
 
   return (

@@ -7,6 +7,8 @@ const Form = ({
   newNumber,
   setNewName,
   setNewNumber,
+  notification,
+  setNotification,
 }) => {
   const handleNameChange = (event) => {
     console.log(event.target.value);
@@ -44,6 +46,11 @@ const Form = ({
                   : person
               )
             );
+
+            setNotification({
+              text: `Updated number of ${duplicatePerson.name} from ${duplicatePerson.number} to ${newNumber}`,
+              type: "success",
+            });
           })
           .catch((error) => console.log(error));
       }
@@ -56,6 +63,10 @@ const Form = ({
       .then((response) => {
         console.log(response);
         setPersons(persons.concat(response));
+        setNotification({
+          text: `${newName} added to phonebook`,
+          type: "success",
+        });
       })
       .catch((error) => {
         console.log("fail ", error);

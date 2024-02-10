@@ -4,9 +4,12 @@ import Form from "./Form";
 import Search from "./Search";
 import axios from "axios";
 import Persons from "./Persons";
+import "./style.css";
+import Notification from "./Notification";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
+  const [notification, setNotification] = useState({ text: "", type: "" });
 
   useEffect(() => {
     axios.get("http://localhost:3001/persons").then((response) => {
@@ -22,6 +25,11 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification
+        text={notification.text}
+        type={notification.type}
+        setNotification={setNotification}
+      />
 
       <Search
         setPersonsToShow={setPersonsToShow}
@@ -37,9 +45,15 @@ const App = () => {
         newNumber={newNumber}
         setNewName={setNewName}
         setNewNumber={setNewNumber}
+        notification={notification}
+        setNotification={setNotification}
       />
 
-      <Display people={personsToShow} setPersons={setPersons} />
+      <Display
+        people={personsToShow}
+        setPersons={setPersons}
+        setNotification={setNotification}
+      />
     </div>
   );
 };

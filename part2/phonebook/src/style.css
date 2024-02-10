@@ -1,0 +1,19 @@
+.padded-container-success {
+  color: green;
+  padding: 1em;
+  border-radius: 10px;
+  border-color: green;
+  border-width: 5px;
+  border-style: solid;
+  background-color: rgb(207, 255, 207);
+}
+
+.padded-container-error {
+  color: rgb(223, 69, 69);
+  padding: 1em;
+  border-radius: 10px;
+  border-color: rgb(223, 69, 69);
+  border-width: 5px;
+  border-style: solid;
+  background-color: rgb(255, 194, 194);
+}

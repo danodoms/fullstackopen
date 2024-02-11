@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import dotenv from "dotenv";
 
 const Results = ({ searchTerm, allCountries }) => {
   console.log("allCountries: ", allCountries);
@@ -12,9 +13,7 @@ const Results = ({ searchTerm, allCountries }) => {
     generateResults();
   }, [searchTerm]);
 
-  useEffect(() => {
-    generateWeatherContent();
-  }, [weather]);
+  useEffect(() => {}, [weather]);
 
   const filteredCountries = allCountries.filter((country) => {
     return country.name.common.toLowerCase().includes(searchTerm.toLowerCase());
@@ -67,19 +66,20 @@ const Results = ({ searchTerm, allCountries }) => {
     console.log("country weather: ", country);
     const lat = country.latlng[0];
     const lon = country.latlng[1];
-    const apiKey = "db218f43a8bd252a3828ac6d9019d4d1";
+    const apiKey = import.meta.env.VITE_API_KEY;
 
     axios
       .get(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`
       )
       .then((response) => {
-        console.log(response.data);
+        console.log("weather:", response.data);
         setWeather(response.data);
       })
       .catch((error) => console.log(error));
 
     console.log("weather: ", weather);
+    // console.log("weather.weather[0].icon: ", weather.weather[0].icon);
 
     if (weather === null) {
       return <p>Fetching weather...</p>;
@@ -87,7 +87,12 @@ const Results = ({ searchTerm, allCountries }) => {
       return (
         <>
           <h2>Weather in {country.capital}</h2>
-          <p>temperature {weather.main.temp - 273.15}</p>
+          <p>temperature {Number(weather.main.temp - 273.15).toFixed(2)} °C</p>
+          <img
+            src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+            alt="weather icon"
+          />
+          <p>wind {weather.wind.speed} m/s</p>
         </>
       );
     }
